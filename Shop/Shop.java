@@ -1,13 +1,16 @@
 package Shop;
-
 import java.util.Comparator;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import Product.Product;
 
 public class Shop {
-    private List<Product> products;
+    private ArrayList<Product> products;
 
     // Геттеры, сеттеры:
-    public List<Product> getProducts() {
+    public ArrayList<Product> getProducts() {
         return products;
     }
 
@@ -15,16 +18,20 @@ public class Shop {
         this.products = products;
     }
 
+    public void AddSpecificProduct(Integer cost, String title) {
+        Product product = new Product();
+        product.setCost(cost);
+        product.setTitle(title);
+        products.add(product);
+    }
+
     // Метод должен вернуть отсортированный по возрастанию по цене список продуктов
-    public List<Product> sortProductsByPrice() {
-        // Допишите реализацию метода самостоятельно
-        return null;
+    public ArrayList<Product> sortProductsByPrice() {
+        return Collections.sort(this.products, Comparator.comparing(Product::getCost));;
     }
 
     // Метод должен вернуть самый дорогой продукт
     public Product getMostExpensiveProduct() {
-        // Допишите реализацию метода самостоятельно
-        return null;
+        return sortProductsByPrice().get(sortProductsByPrice().size() - 1);
     }
-
 }
